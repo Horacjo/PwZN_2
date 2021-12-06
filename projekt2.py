@@ -54,7 +54,7 @@ class simulation:
                                                                  (self.state[x+1][y] if x+1 < self.size else 0))
                 h_spin += -(self.hVal * self.state[x, y])
 
-        print(f'{h_influence = }, {h_spin = }') 
+        print(f'{h_influence = }, {h_spin = }, {h_spin + h_influence = }') 
         return h_influence + h_spin
 
     def step(self):
@@ -67,8 +67,8 @@ class simulation:
     
         dE = e2 - e1
         if dE > 0:
-            pr = random.randint(0,1)
-            if pr > math.e ** (dE*self.BVal):
+            pr = random.random()
+            if pr < math.e ** (-dE*self.BVal):
                 self.__pictureGenerator__()
                 self.index +=1 
             else:
